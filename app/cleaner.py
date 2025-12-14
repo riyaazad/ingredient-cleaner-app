@@ -5,9 +5,16 @@ ALIASES = {
     "vit b3": "niacinamide",
     "octinoxate": "ethylhexyl methoxycinnamate",
     "aqua": "water",
+    "phenoxyehtanol": "phenoxyethanol",
+    "niacinimide": "niacinamide",
+    "sodum hyaluronate": "sodium hyaluronate",
     "parfum": "fragrance"
     #we can keep adding more/extending this list for common mix ups
 }
+
+def map_aliases(text: str) -> str:
+    key = text.lower().strip()
+    return ALIASES.get(key, text)
 
 DO_NOT_MERGE = [
     ("chloride", "chlorite")
