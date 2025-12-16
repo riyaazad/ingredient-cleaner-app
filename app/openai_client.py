@@ -49,15 +49,17 @@ def call_openai(raw: str) -> dict:
     text_output = text_output.strip().strip("```json").strip("```").strip()
 
     try:
-        parsed = json.loads(text_output)
+        parsed_response = json.loads(text_output)
     except json.JSONDecodeError:
         return {}
 
     return {
-        "normalized_inci": parsed.get("normalized_inci"),
-        "normalized_common": parsed.get("normalized_common"),
-        "category": parsed.get("category", "unknown"),
-        "confidence": parsed.get("confidence", 0.0),
-        "flags": parsed.get("flags", []),
-        "explanation": parsed.get("explanation", "")
-    }
+    "name": parsed_response.get("name", None),
+    "common_name": parsed_response.get("common_name", None),
+    "type": parsed_response.get("type", "unknown"),
+    "confidence": parsed_response.get("confidence", 0.0),
+    "flags": parsed_response.get("flags", []),
+    "explanation": parsed_response.get("explanation", "")
+    }   
+
+
